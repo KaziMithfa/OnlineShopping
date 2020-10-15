@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminHomeActivity">
+
+    <TextView
+        android:id="@+id/admin_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome dear admin"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        />
+
+
+
+    <Button
+        android:id="@+id/maintain_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/admin_welcome"
+        android:layout_marginTop="50dp"
+        android:text="Maintain Products"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <Button
+        android:id="@+id/admin_add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/maintain_btn"
+        android:layout_marginTop="10dp"
+        android:text="Add Products"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        />
+     <Button
+        android:id="@+id/check_new_orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/admin_add_btn"
+        android:layout_marginTop="10dp"
+        android:text="Check New Orders"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        />
+
+
+    <Button
+        android:id="@+id/admin_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+
+        />
+
+
+
+
+
+</RelativeLayout>

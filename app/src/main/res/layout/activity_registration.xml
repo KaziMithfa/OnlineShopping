@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+    <ImageView
+        android:id="@+id/ImageviewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/applogo"
+       android:layout_centerVertical="true"
+        />
+
+    <EditText
+
+        android:id="@+id/nameEditTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="#ff22"
+        android:inputType="text"
+        android:layout_below="@id/ImageviewId"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+      <EditText
+
+        android:id="@+id/phoneEditTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="#ff22"
+       android:inputType="number"
+        android:layout_below="@id/nameEditTextId"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+     <EditText
+
+        android:id="@+id/passwordEditTextId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="#ff22"
+       android:inputType="textPassword"
+        android:layout_below="@id/phoneEditTextId"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+
+    <Button
+        android:layout_marginBottom="10dp"
+        android:id="@+id/registerbtnId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Register"
+        android:textSize="17sp"
+        android:textStyle="bold"
+
+        />
+
+
+
+</RelativeLayout>
