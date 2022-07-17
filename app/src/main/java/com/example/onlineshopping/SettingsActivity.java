@@ -184,6 +184,7 @@ public class SettingsActivity extends AppCompatActivity {
                     if(!task.isSuccessful())
                     {
                         throw task.getException();
+
                     }
                     return fileRef.getDownloadUrl();
                 }

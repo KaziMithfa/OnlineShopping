@@ -125,9 +125,19 @@ public class CartActivity extends AppCompatActivity {
                                        @Override
                                        public void onComplete(@NonNull Task<Void> task) {
 
-                                           Toast.makeText(CartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
-                                           Intent intent = new Intent(CartActivity.this,HomeActivity.class);
-                                           startActivity(intent);
+                                           cartListRef.child("Admin View").child(prevalent.currentonlineUser.getPhone())
+                                                   .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                               @Override
+                                               public void onComplete(@NonNull Task<Void> task) {
+
+                                                   Toast.makeText(CartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
+                                                   Intent intent = new Intent(CartActivity.this,HomeActivity.class);
+                                                   startActivity(intent);
+
+                                               }
+                                           });
+
+
 
                                        }
                                    });

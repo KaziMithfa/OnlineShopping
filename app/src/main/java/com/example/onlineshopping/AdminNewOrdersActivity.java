@@ -14,10 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.onlineshopping.Model.AdminOrders;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,6 +29,8 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
     private RecyclerView orderList;
     private DatabaseReference ordersref;
+    private DatabaseReference cartRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_new_orders);
 
         ordersref = FirebaseDatabase.getInstance().getReference().child("Orders");
+        cartRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         orderList = findViewById(R.id.orderList);
         orderList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -45,7 +52,10 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<AdminOrders,AdminOrdersViewHolder>adapter = new FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull AdminOrdersViewHolder adminOrdersViewHolder, final int i, @NonNull AdminOrders adminOrders) {
+            protected void onBindViewHolder(@NonNull final AdminOrdersViewHolder adminOrdersViewHolder, final int i, @NonNull AdminOrders adminOrders) {
+
+
+
 
                 adminOrdersViewHolder.userName.setText("UserName : "+adminOrders.getName());
                 adminOrdersViewHolder.userPhoneNumber.setText("Phone : "+adminOrders.getPhone());
@@ -57,7 +67,9 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        String uID = getRef(i).getKey();
+
+                        String  uID = getRef(i).getKey();
+
                         Intent intent = new Intent(AdminNewOrdersActivity.this, AdminUserProductActivity.class);
                         intent.putExtra("uid",uID);
                         startActivity(intent);
@@ -79,11 +91,12 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
                         builder.setTitle("Have you shipped this order product ?");
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            public void onClick(DialogInterface dialogInterface, int j) {
 
-                                if(i == 0)
+                                if(j == 0)
                                 {
-                                    String uID = getRef(i).getKey();
+                                   String uID = getRef(i).getKey();
+
                                     RemoveOrder(uID);
 
                                 }
@@ -125,8 +138,22 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
     private void RemoveOrder(String uID) {
 
         ordersref.child(uID).removeValue();
-        DatabaseReference carts = FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View");
-        carts.child(uID).removeValue();
+        cartRef.child("Admin View").child(uID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(AdminNewOrdersActivity.this, "The order has been shifted successfully....", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AdminNewOrdersActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
     }
 

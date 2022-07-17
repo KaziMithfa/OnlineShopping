@@ -24,8 +24,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         txtProductDescription= itemView.findViewById(R.id.product_description);
         txtProductPrice= itemView.findViewById(R.id.product_price);
 
-
-
     }
 
 
